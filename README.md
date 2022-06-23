@@ -1,3 +1,8 @@
+# https://pub.dev/packages/camerawesome
+# https://github.com/Apparence-io/camera_awesome
+# git@github.com:sramos30/camera_awesome.git
+
+
 <p align="center">
 	<a href="https://apparence.io/">
 		<img src="https://back.apparence.io/media/111/camerawesome.jpeg" width="456" alt="camerawesome_logo">
