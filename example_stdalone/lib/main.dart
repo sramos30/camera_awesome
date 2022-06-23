@@ -30,12 +30,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
-  late String _lastPhotoPath, _lastVideoPath;
+  String _lastPhotoPath, _lastVideoPath;
   bool _focus = false, _fullscreen = true, _isRecordingVideo = false;
 
   ValueNotifier<CameraFlashes> _switchFlash = ValueNotifier(CameraFlashes.NONE);
   ValueNotifier<double> _zoomNotifier = ValueNotifier(0);
-  ValueNotifier<Size> _photoSize = ValueNotifier(Size(800, 600));
+  ValueNotifier<Size> _photoSize = ValueNotifier(null);
   ValueNotifier<Sensors> _sensor = ValueNotifier(Sensors.BACK);
   ValueNotifier<CaptureModes> _captureMode = ValueNotifier(CaptureModes.PHOTO);
   ValueNotifier<bool> _enableAudio = ValueNotifier(true);
@@ -49,14 +49,13 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   VideoController _videoController = VideoController();
 
   /// list of available sizes
-  late List<Size> _availableSizes;
+  List<Size> _availableSizes;
 
-  late AnimationController _iconsAnimationController,
-      _previewAnimationController;
-  late Animation<Offset> _previewAnimation;
-  late Timer _previewDismissTimer;
+  AnimationController _iconsAnimationController, _previewAnimationController;
+  Animation<Offset> _previewAnimation;
+  Timer _previewDismissTimer;
   // StreamSubscription<Uint8List> previewStreamSub;
-  late Stream<Uint8List> previewStream;
+  Stream<Uint8List> previewStream;
 
   @override
   void initState() {
@@ -280,18 +279,15 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
     );
   }
 
-  void _onOrientationChange(CameraOrientations? newOrientation) {
-    if (newOrientation != null) {
-      _orientation.value = newOrientation;
-    }
-
+  _onOrientationChange(CameraOrientations newOrientation) {
+    _orientation.value = newOrientation;
     if (_previewDismissTimer != null) {
       _previewDismissTimer.cancel();
     }
   }
 
-  void _onPermissionsResult(bool? granted) {
-    if (granted != null || granted == false) {
+  _onPermissionsResult(bool granted) {
+    if (!granted) {
       AlertDialog alert = AlertDialog(
         title: Text('Error'),
         content: Text(
