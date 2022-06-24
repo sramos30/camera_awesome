@@ -215,7 +215,9 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
     final file = File(filePath);
     print("==> hastakePhoto : ${file.exists()} | path : $filePath");
     final img = imgUtils.decodeImage(file.readAsBytesSync());
-    print("==> img.width : ${img.width} | img.height : ${img.height}");
+    if (img != null) {
+      print("==> img.width : ${img.width} | img.height : ${img.height}");
+    }
     print("----------------------------------");
   }
 

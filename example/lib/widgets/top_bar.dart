@@ -79,7 +79,7 @@ class TopBarWidget extends StatelessWidget {
                               onResolutionTap.call();
                             },
                             child: Text(
-                              '${value?.width?.toInt()} / ${value?.height?.toInt()}',
+                              '${(value as Size).width.toInt()} / ${value.height.toInt()}',
                               key: ValueKey("resolutionTxt"),
                               style: TextStyle(color: Colors.white),
                             ),

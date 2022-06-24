@@ -33,17 +33,6 @@ pushBranch() {
     echo "pushBranch ${BRANCH_NAME} ${COMMENTS}"
     # rm -f switched
     find . -type f -name "*.lock"  -exec rm -rf {} \;
-    find . -type d -name .metadata  -exec rm -rf {} \;
-    find . -type d -name .packages  -exec rm -rf {} \;
-    find . -type d -name .dart_tool  -exec rm -rf {} \;
-    find . -type d -name .idea  -exec rm -rf {} \;
-    find . -type d -name build  -exec rm -rf {} \;
-    find . -type d -name web  -exec rm -rf {} \;
-    find . -type d -name test  -exec rm -rf {} \;
-    find . -type d -name android  -exec rm -rf {} \;
-    find . -type d -name ios  -exec rm -rf {} \;
-    find . -type d -name macos  -exec rm -rf {} \;
-    find . -type d -name windows  -exec rm -rf {} \;
     find . -type d -name node_modules -exec rm -rf {} \;
     git add --all
     git commit -m "${BRANCH_NAME} changes ${COMMENTS}"
