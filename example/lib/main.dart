@@ -30,7 +30,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
-  late String _lastPhotoPath, _lastVideoPath;
+  String _lastPhotoPath = "", _lastVideoPath = "";
   bool _focus = false, _fullscreen = true, _isRecordingVideo = false;
 
   ValueNotifier<CameraFlashes> _switchFlash = ValueNotifier(CameraFlashes.NONE);
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   VideoController _videoController = VideoController();
 
   /// list of available sizes
-  late List<Size> _availableSizes;
+  List<Size> _availableSizes = [];
 
   late AnimationController _iconsAnimationController,
       _previewAnimationController;
